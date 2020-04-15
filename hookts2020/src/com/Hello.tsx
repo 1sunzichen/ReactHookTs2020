@@ -1,11 +1,12 @@
-improt React from 'react';
+import React from 'react';
 interface IHelloProps{
-  message:string
+  message?:string
 }
-const Hello:React.FunctionComponent<IHelloProps> =(props)=>{
+//函数接口  FC
+const Hello:React.FC<IHelloProps> =(props)=>{
   return <h2>{props.message}</h2>
 }
 Hello.defaultProps={
-  message:'hello world`'
+  message:'hello world'
 }
 export default Hello;

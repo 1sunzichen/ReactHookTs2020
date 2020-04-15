@@ -1,13 +1,14 @@
 import React from 'react';
+import logo from './logo.svg';
 import './App.css';
-import Like from './com/LikeButton';
-import Mouse from './com/MouseTracker';
+
 function App() {
+ 
   return (
     <div className="App">
       <header className="App-header">
-       <Like/>
-       <Mouse/>
+        <h1>武汉加油</h1>
+        <h2>武汉加油</h2>
       </header>
     </div>
   );
