@@ -9,10 +9,11 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <Menu defaultIndex={0}>
-            <MenuItem>coollink</MenuItem>
-            <MenuItem>coollink2</MenuItem>
-            <MenuItem>coollink3</MenuItem>
+        <Menu defaultIndex={0} onSelect={(e)=>{console.log(e);
+        }}>
+            <MenuItem index={0}>coollink</MenuItem>
+            <MenuItem index={1}>coollink2</MenuItem>
+            <MenuItem index={2} disabled>coollink3</MenuItem>
         </Menu>
         <h1>武汉加油</h1>
         <h2>武汉加油</h2>
