@@ -9,9 +9,9 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <Menu defaultIndex={0} onSelect={(e)=>{console.log(e);
+        <Menu defaultIndex={0}  mode="vertical" onSelect={(e)=>{console.log(e);
         }}>
-            <MenuItem index={0}>coollink</MenuItem>
+            <MenuItem index={0} >coollink</MenuItem>
             <MenuItem index={1}>coollink2</MenuItem>
             <MenuItem index={2} disabled>coollink3</MenuItem>
         </Menu>
