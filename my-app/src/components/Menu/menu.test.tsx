@@ -1,5 +1,5 @@
 import React from 'react';
-import {render,RenderResult,fireEvent} from '@testing-library/react';
+import {render,RenderResult,fireEvent,cleanup} from '@testing-library/react';
 import Menu,{MenuProps} from './menu';
 import MenuItem from './menuItem';
 const testProps:MenuProps={
@@ -45,7 +45,7 @@ describe('test menu 和 menuitem 组件',()=>{
       // disabledElement的样式
       expect(disabledElement).toHaveClass('menu-item is-disabled');
   })
-  it("点击时候的情况",()=>{
+  it("点击 menuitem 时候的情况",()=>{
     //获取 节点
     const thirdItem=wrapper.getByText('史各庄社区☎️：69732821 xyz');
     //模拟点击 节点 事件
@@ -56,12 +56,19 @@ describe('test menu 和 menuitem 组件',()=>{
     expect(activeElement).not.toHaveClass('is-active')
     // 被点击的 索引值
     expect(testProps.onSelect).toHaveBeenCalledWith(2);
+    //点击disabled  时候的动态
+    fireEvent.click(disabledElement);
+    // 无样式
+    expect(disabledElement).not.toHaveClass('is-active');
+    // 没有选择
+    expect(testProps.onSelect).not.toHaveBeenCalledWith(1);
   })
-  it("点击时候的动态",()=>{
-
-  })
-  it("点击时候的动态",()=>{
-
+  it("点击 横向 时候的动态",()=>{
+    cleanup()
+    const wrapper=render(NiceMenu(testVerProps));
+    const menuElement=wrapper.getByTestId("menu")
+    expect(menuElement).toHaveClass('menu-vertical')
   })
   
+  //每个 case 末尾都调用cleanup方法
 })
