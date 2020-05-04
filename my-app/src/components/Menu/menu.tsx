@@ -37,7 +37,7 @@ const Menu:React.FC<MenuProps>=(props)=>{
     onSelect:handleClick
   }
   return (
-    <ul className={classes} style={style}>
+    <ul className={classes} style={style} data-testid="menu">
         {/* //使用provider */}
         <MenuContext.Provider value={passedContext}>
           {children}
@@ -46,6 +46,7 @@ const Menu:React.FC<MenuProps>=(props)=>{
   )
 }
 Menu.defaultProps={
+  //默认索引为0
   defaultIndex:0,
   mode:'horizontal'
 }
