@@ -11,7 +11,7 @@ const testVerProps:MenuProps={
   defaultIndex:0,
   mode:'vertical'
 }
-const NiceMenu=(props:any)=>{
+const NiceMenu=(props:MenuProps)=>{
   return(
          <Menu {...props}>
         
