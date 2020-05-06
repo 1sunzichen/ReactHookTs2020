@@ -14,9 +14,9 @@ function App() {
         <Menu defaultIndex={0}  mode="vertical" onSelect={(e)=>{console.log(e);
         }}>
         
-            <MenuItem index={0} >朱辛庄社区☎️：60702429</MenuItem>
-            <MenuItem index={1}>史各庄社区☎️：80716579</MenuItem>
-            <MenuItem index={2} disabled>史各庄社区☎️：69732821</MenuItem>
+            <MenuItem  >朱辛庄社区☎️：60702429</MenuItem>
+            <MenuItem >史各庄社区☎️：80716579</MenuItem>
+            <MenuItem  disabled>史各庄社区☎️：69732821</MenuItem>
         </Menu>
        <h1
           

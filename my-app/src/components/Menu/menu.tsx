@@ -22,7 +22,8 @@ const Menu:React.FC<MenuProps>=(props)=>{
   const {className,mode,style,children,defaultIndex,onSelect}=props
   const [currentActive,setActive]=useState(defaultIndex);
   const classes=classNames('viking-menu',className,{
-    'menu-vertical':mode==='vertical'
+    'menu-vertical':mode==='vertical',
+    'menu-horizonal':mode!=='horizontal'
   })
   const handleClick=(index:number)=>{
     //把索引进行设置返回出去
