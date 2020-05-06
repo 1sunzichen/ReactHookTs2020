@@ -1,8 +1,9 @@
 import React,{useContext} from 'react';
 import classNames from 'classnames';
 import {MenuContext} from './menu';
+import { type } from 'os';
 export interface MenuItemProps{
-  index:number;
+  index?:number;
   disabled?:boolean;
   className?:string;
   style?:React.CSSProperties;
@@ -17,7 +18,7 @@ const MenuItem:React.FC<MenuItemProps>=(props)=>{
   })
   //点击方法中调用context方法
   const handleClick=()=>{
-    if(context.onSelect&&!disabled){
+    if(context.onSelect&&!disabled&&(typeof index==='number')){
       context.onSelect(index)
     }
   }
@@ -30,4 +31,6 @@ const MenuItem:React.FC<MenuItemProps>=(props)=>{
     </li>
   )
 }
+//静态属性添加
+MenuItem.displayName='MenuItem'
 export default MenuItem;

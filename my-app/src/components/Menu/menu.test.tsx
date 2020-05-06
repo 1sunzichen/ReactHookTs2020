@@ -15,9 +15,10 @@ const NiceMenu=(props:MenuProps)=>{
   return(
          <Menu {...props}>
         
-            <MenuItem index={0} >active朱辛庄社区☎️：60702429</MenuItem>
-            <MenuItem index={1} disabled>disabled史各庄社区☎️：80716579</MenuItem>
-            <MenuItem index={2}>史各庄社区☎️：69732821 xyz</MenuItem>
+            <MenuItem >active朱辛庄社区☎️：60702429</MenuItem>
+            <MenuItem  disabled>disabled史各庄社区☎️：80716579</MenuItem>
+            <MenuItem >史各庄社区☎️：69732821 xyz</MenuItem>
+            <li>123</li>
         </Menu>
   )
 }

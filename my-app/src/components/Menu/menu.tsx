@@ -1,5 +1,6 @@
 import React,{useState,createContext} from 'react';
 import classNames from 'classnames';
+import {MenuItemProps} from './menuItem';
 type MenuMode='horizontal'|'vertical';
 type SelectCallback=(selectedIndex:number)=>void
 export interface MenuProps{
@@ -36,11 +37,26 @@ const Menu:React.FC<MenuProps>=(props)=>{
     index:currentActive?currentActive:0,
     onSelect:handleClick
   }
+
+  const renderChildren=()=>{
+    return React.Children.map(children,(child,index)=>{
+      const childElement=child as React.FunctionComponentElement<MenuItemProps>
+      const {displayName}=childElement.type; 
+      if(displayName==="MenuItem"){
+        //增加 index 属性
+        return React.cloneElement(childElement,{
+          index
+        })
+      }else{
+        console.error('Warning : Menu 返回不是 menuitem 组件')
+      }
+    })
+  }
   return (
     <ul className={classes} style={style} data-testid="menu">
         {/* //使用provider */}
         <MenuContext.Provider value={passedContext}>
-          {children}
+          {renderChildren()}
         </MenuContext.Provider>
     </ul>
   )

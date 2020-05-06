@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from './logo.svg';
+
 import './App.css';
 import Menu from './components/Menu/menu';
 import MenuItem from './components/Menu/menuItem';
