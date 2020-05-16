@@ -12,7 +12,9 @@ function App() {
     
       <header className="App-header">
       
-        <Menu defaultIndex={0}  mode="vertical" onSelect={(e)=>{console.log(e);
+        <Menu defaultIndex={0}  
+        // mode="vertical"
+         onSelect={(e)=>{console.log(e);
         }}>
         
             {/* <MenuItem  >朱辛庄社区☎️：60702429</MenuItem>

@@ -1,8 +1,7 @@
-import React,{useContext,FunctionComponentElement, FunctionComponent,useState} from 'react';
+import React,{useContext,FunctionComponentElement,useState} from 'react';
 import classNames from 'classnames';
 import {MenuContext} from './menu';
 import {MenuItemProps} from './menuItem';
-import { render } from '@testing-library/react';
 export interface SubMenuProps{
     index?:number;
     title:string;
@@ -13,13 +12,34 @@ const SubMenu:React.FC<SubMenuProps>=({
 })=>{
     const [menuOpen,setOpen]=useState(false);
     const  context=useContext(MenuContext);
-    const  classes=classNames('menu-item sunmenu-item',className,{
+    const  classes=classNames('menu-item submenu-item',className,{
       'is-active':context.index===index
     })
     const handleClick=(e:React.MouseEvent)=>{
       e.preventDefault();
       setOpen(!menuOpen);
     }
+
+    let timer:any 
+    const handleMouse=(e:React.MouseEvent,toggle:boolean)=>{
+        clearTimeout(timer);
+        e.preventDefault();
+        timer=setTimeout(()=>{
+            setOpen(toggle);
+        },300)
+    }
+    const clickEvents=context.mode==="vertical"?{
+        onClick:handleClick
+    }:{}
+    const hoverEnents=context.mode!=="vertical"?{
+        onMouseEnter:(e:React.MouseEvent)=>{
+            handleMouse(e,true)
+        },
+        onMouseLeave:(e:React.MouseEvent)=>{
+            handleMouse(e,false)
+        }
+    }:{}
+
     const renderChildren=()=>{
       const subMenuClasses=classNames('viking-submenu',{
           'menu-opened':menuOpen
@@ -40,8 +60,8 @@ const SubMenu:React.FC<SubMenuProps>=({
      )
   }
   return (
-      <li key={index} className={classes}>
-          <div className="sunmenu-title" onClick={handleClick}>
+      <li key={index} className={classes} {...hoverEnents}>
+          <div className="sunmenu-title" {...clickEvents}>
               {title}
           </div>
           {renderChildren()}

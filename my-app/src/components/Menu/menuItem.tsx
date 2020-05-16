@@ -1,7 +1,6 @@
 import React,{useContext} from 'react';
 import classNames from 'classnames';
 import {MenuContext} from './menu';
-import { type } from 'os';
 export interface MenuItemProps{
   index?:number;
   disabled?:boolean;
