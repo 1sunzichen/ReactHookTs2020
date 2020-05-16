@@ -2,6 +2,7 @@ import React from 'react';
 
 import './App.css';
 import Menu from './components/Menu/menu';
+import SubMenu from './components/Menu/subMenu';
 import MenuItem from './components/Menu/menuItem';
 import ButtonE,{ButtonType,ButtonSize} from './components/Button/button';
 function App() {
@@ -14,9 +15,14 @@ function App() {
         <Menu defaultIndex={0}  mode="vertical" onSelect={(e)=>{console.log(e);
         }}>
         
-            <MenuItem  >朱辛庄社区☎️：60702429</MenuItem>
+            {/* <MenuItem  >朱辛庄社区☎️：60702429</MenuItem>
             <MenuItem >史各庄社区☎️：80716579</MenuItem>
-            <MenuItem  disabled>史各庄社区☎️：69732821</MenuItem>
+            <MenuItem  disabled>史各庄社区☎️：69732821</MenuItem> */}
+            <SubMenu title='abcd'>
+              <MenuItem>朱辛庄社区☎️：60702429</MenuItem>
+              <MenuItem>史各庄社区☎️：80716579</MenuItem>
+              <MenuItem  disabled>史各庄社区☎️：69732821</MenuItem>
+            </SubMenu>
         </Menu>
        <h1
           
