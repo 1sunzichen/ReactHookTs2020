@@ -2,32 +2,35 @@ import React,{useState,createContext} from 'react';
 import classNames from 'classnames';
 import {MenuItemProps} from './menuItem';
 type MenuMode='horizontal'|'vertical';
-type SelectCallback=(selectedIndex:number)=>void
+type SelectCallback=(selectedIndex:string)=>void
 export interface MenuProps{
-  defaultIndex?:number;
+  defaultIndex?:string;
   className?:string;
   mode?:MenuMode;
   style?:React.CSSProperties;
   onSelect?:SelectCallback;
+  //默认defaultOpenSubmenuIndex
+  defaultOpenSubMenus?:string[];
 }
 
   
 
 interface IMenuContext{
-  index:number;
+  index:string;
   onSelect?:SelectCallback;
-  mode?:MenuMode
+  mode?:MenuMode;
+  defaultOpenSubMenus?:string[];
 }
 
-export const MenuContext=createContext<IMenuContext>({index:0});
+export const MenuContext=createContext<IMenuContext>({index:"0"});
 const Menu:React.FC<MenuProps>=(props)=>{
-  const {className,mode,style,children,defaultIndex,onSelect}=props
+  const {className,mode,style,children,defaultIndex,onSelect,defaultOpenSubMenus}=props
   const [currentActive,setActive]=useState(defaultIndex);
   const classes=classNames('viking-menu',className,{
     'menu-vertical':mode==='vertical',
     'menu-horizonal':mode!=='horizontal'
   })
-  const handleClick=(index:number)=>{
+  const handleClick=(index:string)=>{
     //把索引进行设置返回出去
     setActive(index);
     if(onSelect){
@@ -37,8 +40,10 @@ const Menu:React.FC<MenuProps>=(props)=>{
   //使用context
   const passedContext:IMenuContext={
     //传递方法和要操作的参数
-    index:currentActive?currentActive:0,
+    index:currentActive?currentActive:"0",
     onSelect:handleClick,
+    mode,
+    defaultOpenSubMenus
   }
 
   const renderChildren=()=>{
@@ -48,7 +53,7 @@ const Menu:React.FC<MenuProps>=(props)=>{
       if(displayName==="MenuItem"||displayName==="SubMenu"){
         //增加 index 属性
         return React.cloneElement(childElement,{
-          index
+          index:index.toString()
         })
       }else{
         console.error('Warning : Menu 返回不是 menuitem 组件')
@@ -66,7 +71,8 @@ const Menu:React.FC<MenuProps>=(props)=>{
 }
 Menu.defaultProps={
   //默认索引为0
-  defaultIndex:0,
-  mode:'horizontal'
+  defaultIndex:"0",
+  mode:'horizontal',
+  defaultOpenSubMenus:[]
 }
 export default Menu;

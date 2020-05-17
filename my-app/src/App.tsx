@@ -12,8 +12,9 @@ function App() {
     
       <header className="App-header">
       
-        <Menu defaultIndex={0}  
-        // mode="vertical"
+        <Menu defaultIndex={"0"}  
+          mode="vertical"
+          defaultOpenSubMenus={['0']}
          onSelect={(e)=>{console.log(e);
         }}>
         
