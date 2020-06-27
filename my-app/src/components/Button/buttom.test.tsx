@@ -1,8 +1,21 @@
 import React from 'react';
 import {render} from '@testing-library/react';
-import Button from './button';
+import Button,{BaseButtonProps} from './button';
 
+const defaultProps={
+  onClick:jest.fn()
+}
 
+const testProps:BaseButtonProps={
+  btnType:'primary',
+  size:"lg",
+  className:'klass'
+}
+
+const disabledProps:BaseButtonProps={
+  disabled:true,
+  onClick:jest.fn()
+}
 describe('test button',()=>{
   it('shoule render corrent default button',()=>{
     const wrapper=render(<Button>Nice</Button>);
