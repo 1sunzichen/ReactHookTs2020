@@ -2,7 +2,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import Button from './button';
-
+import {withInfo} from '@storybook/addon-info';
 const defaultButton=()=>(
     <Button onClick={action('clicked')}>default Button</Button>
 )
@@ -21,12 +21,18 @@ const buttonWithType=()=>(
     </>
 )
 const styles:React.CSSProperties={
-
+  textAlign:'center'
 }
 const ConterDecorator=(storyFn:any)=><div style={styles}>{storyFn()}</div>
 // const styles:
 storiesOf('Button 组件',module)
-    .addDecorator(ConterDecorator)
+    .addDecorator(withInfo)
+    .addParameters({
+        info:{
+            text:'这是一个完美的button',
+            inline:true
+        }
+    })
     .add('默认button',defaultButton)
-    .add('不同尺寸的 Button',buttonWithSize)
+    .add('不同尺寸的 Button',buttonWithSize,{info:{inline:false}})
     .add('不同类型的 Button',buttonWithType)
