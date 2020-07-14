@@ -1,0 +1,19 @@
+{//支持es6编译代码 esmodules
+    "compilerOptions": {
+        "outDir": "build",//文件路径
+        "module":"ESNext",// 模块化形式 标准形式
+        "target": "ES5",
+        "declaration": true,//生成d.ts 文件 描述文件
+        "jsx":"react",
+        "moduleResolution": "node",//修改引入方式
+        "allowSyntheticDefaultImports":true,// 可以使用默认导出 导入
+    },
+    "include": [
+        "src",
+        "src/*.jsx"
+    ],
+    "exclude": [
+        "src/**/*.test.tsx",//** 任意长度
+        "src/**/*.stories.tsx"
+    ]
+}
